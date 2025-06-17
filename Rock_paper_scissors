@@ -1,0 +1,74 @@
+import random
+
+def user_choice():
+    while True:
+        choice = input("Enter your Choice{ rock, paper, scissors}:").lower()
+        if choice in ["rock","paper","scissors"]:
+            return choice
+        else:
+            print("Invalid Choice!!!!!!!, Choose among Rock, Paper, Scissors")
+
+def computer_choice():
+    return random.choice(["rock","scissors","paper"])
+
+def determine_winner(user,computer):
+    if user == computer:
+        return "Tie"
+    
+    elif (user == "paper" and computer == "rock") or \
+         (user == "rock" and computer == "scissors") or \
+         (user == "scissors" and computer == "paper"):
+        return "user"
+    
+    else:
+        return "computer"
+    
+def play_game():
+    user_score = 0
+    computer_score = 0
+    round_number = 1
+    print("WELCOME TO ROCK PAPER SCISSORS GAME")
+    print("Rules : ROCK BEAT SCISSORS | PAPER BEAT ROCK | SCISSORS BEAT PAPER ")
+
+    while True:
+        print("\nRound {round_number}:")
+        user_option = user_choice()
+        computer_option = computer_choice()
+
+        print(f"Your choice : {user_option}")
+        print(f"Computer choice : {computer_option}")
+        
+        winner = determine_winner(user_option,computer_option)
+
+        if winner == "user":
+            print("You won this round")
+            user_score +=1
+        
+        elif winner == "computer":
+            print("Computer Won this round")
+            computer_score +=1
+        
+        else:
+            print("TIE")
+
+        print(f"Score : Your = {user_score} | Computer = {computer_score}")
+
+        play_again = input("Do you want to play another round (Yes/NO):").lower()
+        if play_again not in ["y","yes"]:
+            print(f" Final score : Your = {user_score} | computer = {computer_score}")
+            if user_score > computer_score:
+                print("Congratulations.... You won")
+            
+            elif (computer_score > user_score):
+                print("Sad, You lost :(")
+            
+            else:
+                print("It's a TIE")
+            break
+        round_number +=1
+play_game()
+
+            
+
+
+
