@@ -1,42 +1,51 @@
-
-
 def calculator():
+    print("Hello! Welcome to your personal calculator ")
+    name = input("What's your name? ")
+
+    print(f"\nNice to meet you, {name}! Let's do some math together.")
+
     while True:
-        print("\n--- Simple Calculator ---")
-        print("1. Addition (+)")
-        print("2. Subtraction (-)")
-        print("3. Multiplication (*)")
-        print("4. Division (/)")
+        print("\n--- Simple Calculator Menu ---")
+        print("1. Add (+)")
+        print("2. Subtract (-)")
+        print("3. Multiply (*)")
+        print("4. Divide (/)")
         print("5. Exit")
-        
-        choice = input("Choose an operation (1-5): ")
+
+        choice = input("Choose an operation (1-5): ").strip()
 
         if choice == "5":
-            print("Goodbye! Calculator closed.")
+            print(f"Goodbye, {name}! Hope to see you again. ")
             break
 
-        # Input 
-        try:
-            num1 = float(input("Enter first number: "))
-            num2 = float(input("Enter second number: "))
-        except ValueError:
-            print("Please enter valid numbers!")
+        if choice not in {"1", "2", "3", "4"}:
+            print("Hmm... that doesn't look right. Choose a number from 1 to 5.")
             continue
 
-        # Perform 
-        if choice == "1":
-            print(f"Result: {num1} + {num2} = {num1 + num2}")
-        elif choice == "2":
-            print(f"Result: {num1} - {num2} = {num1 - num2}")
-        elif choice == "3":
-            print(f"Result: {num1} * {num2} = {num1 * num2}")
-        elif choice == "4":
-            if num2 != 0:
-                print(f"Result: {num1} / {num2} = {num1 / num2}")
-            else:
-                print(" Cannot divide by zero.")
-        else:
-            print(" Invalid choice. Please select from 1 to 5.")
+        # Input numbers
+        try:
+            num1 = float(input("Enter the first number: "))
+            num2 = float(input("Enter the second number: "))
+        except ValueError:
+            print("Oops! That wasn't a valid number. Let's try again.")
+            continue
 
-# Run
+        # Perform calculation
+        if choice == "1":
+            result = num1 + num2
+            print(f"You chose to add. Result: {num1} + {num2} = {result}")
+        elif choice == "2":
+            result = num1 - num2
+            print(f"You chose to subtract. Result: {num1} - {num2} = {result}")
+        elif choice == "3":
+            result = num1 * num2
+            print(f"You chose to multiply. Result: {num1} * {num2} = {result}")
+        elif choice == "4":
+            if num2 == 0:
+                print("Uh-oh! You can't divide by zero.")
+            else:
+                result = num1 / num2
+                print(f"You chose to divide. Result: {num1} / {num2} = {result}")
+
+# Start the calculator
 calculator()
